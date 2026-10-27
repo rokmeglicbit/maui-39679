@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlyoutFooterRepro.MainPage"
+             Title="Flyout footer repro">
+
+    <VerticalStackLayout Padding="24" Spacing="16">
+        <Label Text="dotnet/maui#39679" FontSize="20" FontAttributes="Bold" />
+        <Label Text="{Binding Status}" />
+        <Button Text="Toggle footer banner now" Command="{Binding ToggleBannerCommand}" />
+        <Button Text="Toggle footer banner in 4 s" Command="{Binding ToggleBannerDelayedCommand}" />
+        <Label Text="1) Open the flyout (hamburger icon), scroll the content to the end.&#10;2) Toggle the banner.&#10;3) Scroll to the end again and compare the bottom of the blue content with the top of the orange footer." />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:FlyoutFooterRepro"
+       x:Class="FlyoutFooterRepro.AppShell"
+       FlyoutBehavior="Flyout">
+
+    <ShellContent Title="Home"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage" />
+
+    <!-- Flyout content: tall ScrollView with ~15 items, light-blue background so its
+         bottom edge is easy to see relative to the footer. -->
+    <Shell.FlyoutContentTemplate>
+        <DataTemplate>
+            <ScrollView BackgroundColor="LightSkyBlue">
+                <VerticalStackLayout Padding="16" Spacing="12">
+                    <Label Text="FLYOUT CONTENT (ScrollView)" FontAttributes="Bold" TextColor="Black" />
+                    <Button Text="Toggle footer banner" Command="{Binding ToggleBannerCommand}" />
+                    <Label Text="{Binding Status}" TextColor="Black" />
+
+                    <Label Text="Item 1" TextColor="Black" />
+                    <Label Text="Item 2" TextColor="Black" />
+                    <Label Text="Item 3" TextColor="Black" />
+                    <Label Text="Item 4" TextColor="Black" />
+                    <Label Text="Item 5" TextColor="Black" />
+                    <Label Text="Item 6" TextColor="Black" />
+                    <Label Text="Item 7" TextColor="Black" />
+                    <Label Text="Item 8" TextColor="Black" />
+                    <Label Text="Item 9" TextColor="Black" />
+                    <Label Text="Item 10" TextColor="Black" />
+                    <Label Text="Item 11" TextColor="Black" />
+                    <Label Text="Item 12" TextColor="Black" />
+                    <Label Text="Item 13" TextColor="Black" />
+                    <Label Text="Item 14" TextColor="Black" />
+                    <Label Text="LAST ITEM (must stay visible above the footer)"
+                           FontAttributes="Bold" TextColor="Red" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </DataTemplate>
+    </Shell.FlyoutContentTemplate>
+
+    <!-- Flyout footer: its height changes at runtime when the Border toggles IsVisible. -->
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <VerticalStackLayout BackgroundColor="Orange" Padding="12" Spacing="8">
+                <Label Text="FLYOUT FOOTER" FontAttributes="Bold" TextColor="Black" />
+
+                <Border IsVisible="{Binding IsBannerVisible}"
+                        BackgroundColor="Yellow" Padding="12" HeightRequest="140">
+                    <Label Text="Warning banner (140 dp tall) - toggles the footer height"
+                           TextColor="Black" />
+                </Border>
+
+                <Button Text="Footer button 1" />
+                <Button Text="Footer button 2" />
+            </VerticalStackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+</Shell>
